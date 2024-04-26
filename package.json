@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-03-image-finder",
+  "name": "goit-react-hw-04-image-finder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Yerbatrix.github.io/goit-react-hw-03-image-finder/",
+  "homepage": "https://Yerbatrix.github.io/goit-react-hw-04-image-finder/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
