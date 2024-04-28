@@ -8,12 +8,6 @@ const Modal = ({ onClose, largeImageUrl }) => {
     }
   };
 
-  const handleKeyDown = event => {
-    if (event.code === 'Escape') {
-      onClose();
-    }
-  };
-
   useEffect(() => {
     const handleKeyDownEvent = event => {
       if (event.code === 'Escape') {
@@ -30,7 +24,7 @@ const Modal = ({ onClose, largeImageUrl }) => {
 
   return (
     <div className={css.Overlay} onClick={handleBackdropClick}>
-      <div className={css.Modal} onKeyDown={handleKeyDown} tabIndex="0">
+      <div className={css.Modal} tabIndex="0">
         <img src={largeImageUrl} alt="" className="modal-image" />
       </div>
     </div>
