@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
@@ -7,6 +6,7 @@ import Button from './Button/Button';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
 import css from './App.module.css';
+import fetchImages from './api';
 
 const App = () => {
   const [query, setQuery] = useState('');
@@ -19,13 +19,11 @@ const App = () => {
   useEffect(() => {
     if (!query) return;
 
-    const fetchImages = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(
-          `https://pixabay.com/api/?q=${query}&page=${page}&key=42529634-f4ee0a007b87bc585b0bc2cb3&image_type=photo&orientation=horizontal&per_page=12`
-        );
-        setImages(prevImages => [...prevImages, ...response.data.hits]);
+        const fetchedImages = await fetchImages(query, page);
+        setImages(prevImages => [...prevImages, ...fetchedImages]);
       } catch (error) {
         setError(error);
       } finally {
@@ -33,7 +31,7 @@ const App = () => {
       }
     };
 
-    fetchImages();
+    fetchData();
   }, [query, page]);
 
   const handleSubmit = newQuery => {
