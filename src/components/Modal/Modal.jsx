@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from './Modal.module.css';
 
 const Modal = ({ onClose, largeImageUrl }) => {
@@ -13,6 +13,20 @@ const Modal = ({ onClose, largeImageUrl }) => {
       onClose();
     }
   };
+
+  useEffect(() => {
+    const handleKeyDownEvent = event => {
+      if (event.code === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDownEvent);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDownEvent);
+    };
+  }, [onClose]);
 
   return (
     <div className={css.Overlay} onClick={handleBackdropClick}>
